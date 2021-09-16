@@ -11,6 +11,7 @@ import { TasksCollection } from "/imports/api/TasksCollection";
 import { useTracker } from "meteor/react-meteor-data";
 import { Task } from "./Task";
 import { TaskForm } from "./TaskForm";
+import { Home } from './Home.jsx';
 import {
   BrowserRouter as Router,
   Switch,
@@ -37,39 +38,24 @@ export const App = () => {
     <div>
       <h1>Header</h1>
         <Router>
-        <Link to="/sign-in"> Sign In </Link>
-        <Link to="/home"> Home </Link>
-        <Link to="/donations"> Donations </Link>
-
         <Switch>
           <Route path="/donations">
             Donations
           </Route>
+          <Route path="/home">
+            <Home/> 
+          </Route>
+          <Route path="/map">
+            Map
+          </Route>
           <Route path="/sign-in">
             Sign in
           </Route>
-          <Route path="/home">
-            Home 
-          </Route>
           <Route path="/">
-            Home
+            <Home/>
           </Route>
         </Switch>
         </Router>
-      <h1>Task Form</h1>
-
-      <TaskForm />
-
-      <ul>
-        {tasks.map((task) => (
-          <Task
-            key={task._id}
-            task={task}
-            onCheckboxClick={toggleChecked}
-            onDeleteClick={deleteTask}
-          />
-        ))}
-      </ul>
     </div>
   );
 };
